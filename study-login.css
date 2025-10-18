@@ -341,3 +341,49 @@ body {
         gap: 1rem;
     }
 }
+
+/* Create Account Section */
+.create-account-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.create-text {
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.create-account-btn {
+    position: relative;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(255, 107, 53, 0.3),
+        inset 0 0 20px rgba(255, 107, 53, 0.1);
+    border: 2px solid #ff6b35;
+}
+
+.create-account-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 10px 30px rgba(255, 107, 53, 0.5),
+        0 0 40px rgba(255, 107, 53, 0.4),
+        inset 0 0 30px rgba(255, 107, 53, 0.2);
+}
+
+.create-account-btn .btn-glow {
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.4), transparent);
+}

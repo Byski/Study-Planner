@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON - Study Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="stars-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+    
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">STUDY DASHBOARD</h1>
+            <p class="welcome-text">Welcome back, <span id="username">Student</span>!</p>
+        </header>
+        
+        <div class="dashboard-content">
+            <div class="feature-card" data-animation="slideInLeft">
+                <div class="card-icon">📚</div>
+                <h3>Study Sessions</h3>
+                <p>Track your learning progress</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-card" data-animation="slideInUp">
+                <div class="card-icon">🎯</div>
+                <h3>Goals</h3>
+                <p>Set and achieve your targets</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-card" data-animation="slideInRight">
+                <div class="card-icon">📊</div>
+                <h3>Analytics</h3>
+                <p>View your study statistics</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-card" data-animation="slideInLeft">
+                <div class="card-icon">⚡</div>
+                <h3>Quick Start</h3>
+                <p>Begin a new study session</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-card" data-animation="slideInUp">
+                <div class="card-icon">🏆</div>
+                <h3>Achievements</h3>
+                <p>Unlock study milestones</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-card" data-animation="slideInRight">
+                <div class="card-icon">⚙️</div>
+                <h3>Settings</h3>
+                <p>Customize your experience</p>
+                <div class="card-glow"></div>
+            </div>
+        </div>
+        
+        <div class="dashboard-footer">
+            <button class="logout-btn" onclick="logout()">
+                <span class="btn-text">LOGOUT</span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+    </div>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>

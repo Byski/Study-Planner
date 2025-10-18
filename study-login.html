@@ -31,12 +31,22 @@
                     <div class="input-glow"></div>
                 </div>
                 
+                <div class="input-group" id="confirmPasswordGroup" style="display: none;">
+                    <input type="password" id="confirmPassword" class="login-input" placeholder="Confirm Password">
+                    <div class="input-glow"></div>
+                </div>
+                
+                <div class="input-group" id="emailGroup" style="display: none;">
+                    <input type="email" id="email" class="login-input" placeholder="Email (optional)">
+                    <div class="input-glow"></div>
+                </div>
+                
                 <div class="checkbox-group">
                     <input type="checkbox" id="remember" class="remember-checkbox">
                     <label for="remember" class="remember-label">Remember me</label>
                 </div>
                 
-                <button type="submit" class="login-btn">
+                <button type="submit" class="login-btn" id="submitBtn">
                     <span class="btn-text">LOGIN</span>
                     <div class="btn-glow"></div>
                 </button>
@@ -45,6 +55,14 @@
             <div class="login-footer">
                 <a href="#" class="forgot-link">Forgot Password?</a>
                 <a href="#" class="back-link" onclick="goBack()">← Back to Landing</a>
+            </div>
+            
+            <div class="create-account-section">
+                <p class="create-text">Don't have an account?</p>
+                <button class="create-account-btn" onclick="toggleCreateAccount()">
+                    <span class="btn-text">CREATE ACCOUNT</span>
+                    <div class="btn-glow"></div>
+                </button>
             </div>
         </div>
     </div>

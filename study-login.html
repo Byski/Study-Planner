@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON - Study Login</title>
+    <link rel="stylesheet" href="study-login.css">
+</head>
+<body>
+    <div class="stars-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1 class="login-title">STUDY LOGIN</h1>
+                <p class="login-subtitle">Enter your study credentials</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" class="login-input" placeholder="Username" required>
+                    <div class="input-glow"></div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" class="login-input" placeholder="Password" required>
+                    <div class="input-glow"></div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember" class="remember-checkbox">
+                    <label for="remember" class="remember-label">Remember me</label>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">LOGIN</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="#" class="forgot-link">Forgot Password?</a>
+                <a href="#" class="back-link" onclick="goBack()">← Back to Landing</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="study-login.js"></script>
+</body>
+</html>

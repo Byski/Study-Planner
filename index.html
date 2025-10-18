@@ -20,7 +20,7 @@
         </header>
         
         <nav class="button-container">
-            <button class="glow-button study-btn">
+            <button class="glow-button study-btn" onclick="goToStudy()">
                 <span class="button-text">STUDY</span>
                 <div class="button-glow"></div>
             </button>
@@ -30,5 +30,11 @@
             </button>
         </nav>
     </div>
+    
+    <script>
+        function goToStudy() {
+            window.location.href = 'study-login.html';
+        }
+    </script>
 </body>
 </html>

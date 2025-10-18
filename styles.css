@@ -206,3 +206,35 @@ body {
 .forex-btn .button-glow {
     background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.4), transparent);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arqon-title {
+        font-size: 4rem;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .glow-button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .arqon-title {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .glow-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}

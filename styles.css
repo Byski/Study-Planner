@@ -13,3 +13,14 @@ body {
     height: 100vh;
     position: relative;
 }
+
+/* Main container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}

@@ -27,24 +27,7 @@ class StudyDashboard {
     }
 
     addFloatingElements() {
-        // Create floating geometric shapes
-        for (let i = 0; i < 5; i++) {
-            const shape = document.createElement('div');
-            shape.className = 'floating-shape';
-            shape.style.cssText = `
-                position: fixed;
-                width: ${Math.random() * 20 + 10}px;
-                height: ${Math.random() * 20 + 10}px;
-                background: linear-gradient(45deg, #00ffff, #ff00ff);
-                border-radius: 50%;
-                opacity: 0.3;
-                animation: float ${Math.random() * 10 + 10}s linear infinite;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                z-index: 1;
-            `;
-            document.body.appendChild(shape);
-        }
+        // Removed floating elements for cleaner background
     }
 
     addParticleEffects() {
@@ -151,9 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        .floating-shape {
-            animation: float 10s linear infinite;
-        }
         
         @keyframes fadeOut {
             from { opacity: 1; }

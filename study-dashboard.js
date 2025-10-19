@@ -92,6 +92,20 @@ class StudyDashboard {
     }
 }
 
+// Logout function
+function logout() {
+    // Clear session storage
+    sessionStorage.removeItem('arqon_current_user');
+    sessionStorage.removeItem('arqon_login_time');
+    
+    // Show logout animation
+    document.body.style.animation = 'fadeOut 0.5s ease-out';
+    
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 500);
+}
+
 // Initialize dashboard when page loads
 document.addEventListener('DOMContentLoaded', () => {
     new StudyDashboard();
@@ -123,6 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         .floating-shape {
             animation: float 10s linear infinite;
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
     `;
     document.head.appendChild(style);

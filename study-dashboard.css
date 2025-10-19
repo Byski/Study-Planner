@@ -403,6 +403,278 @@ body {
     animation: slideInRight 1s ease-out 1s both;
 }
 
+/* Course Management Section */
+.course-management {
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(26, 26, 46, 0.8));
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    margin: 1rem;
+    animation: slideInUp 1s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.management-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.management-title {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.management-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.mgmt-tab-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 100px;
+    box-shadow: 
+        0 0 15px rgba(0, 150, 255, 0.3),
+        inset 0 0 15px rgba(0, 150, 255, 0.1);
+}
+
+.mgmt-tab-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(0, 150, 255, 0.5),
+        0 0 30px rgba(0, 150, 255, 0.4),
+        inset 0 0 25px rgba(0, 150, 255, 0.15);
+    border-color: #0099ff;
+}
+
+.mgmt-tab-btn.active {
+    background: linear-gradient(135deg, #0099ff, #0066cc, #004499);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 
+        0 0 30px rgba(0, 150, 255, 0.7),
+        0 0 50px rgba(0, 100, 200, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.mgmt-tab-btn .tab-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.mgmt-tab-btn .tab-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.05em;
+    animation: textGlow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+.management-content {
+    position: relative;
+    min-height: 300px;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Course List Styles */
+.course-list h3 {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.course-card {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.9));
+    border: 2px solid rgba(0, 150, 255, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 150, 255, 0.4);
+    border-color: #0099ff;
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 150, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.course-card:hover::before {
+    left: 100%;
+}
+
+.course-card h4 {
+    color: #00ffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .course-code {
+    color: #ff6b35;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .instructor {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .dates {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* Form Styles */
+.course-form h3 {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 0.8rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 150, 255, 0.3);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #0099ff;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.4);
+}
+
+.form-group textarea {
+    height: 60px;
+    resize: vertical;
+}
+
+/* Action Buttons */
+.action-btn {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 0.8rem;
+    width: 100%;
+}
+
+.create-btn {
+    background: linear-gradient(45deg, #00ff00, #00cc00);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.create-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.5);
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #ff6b35, #ff4500);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.edit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.delete-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+}
+
+.delete-warning {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.delete-warning p {
+    color: #ff6b6b;
+    margin: 0;
+    font-weight: bold;
+}
+
 @keyframes slideInRight {
     from {
         opacity: 0;

@@ -286,6 +286,7 @@ function loadCourses() {
 
 function updateCourseSelects() {
     const courses = JSON.parse(localStorage.getItem('arqon_courses') || '[]');
+    console.log('Courses found:', courses); // Debug log
     const editSelect = document.getElementById('editCourseSelect');
     const deleteSelect = document.getElementById('deleteCourseSelect');
     
@@ -294,10 +295,14 @@ function updateCourseSelects() {
     ).join('');
     
     if (editSelect) {
-        editSelect.innerHTML = '<option value="">Select Course to Edit</option>' + options;
+        // Remove existing event listeners by cloning the element
+        const newEditSelect = editSelect.cloneNode(true);
+        editSelect.parentNode.replaceChild(newEditSelect, editSelect);
+        
+        newEditSelect.innerHTML = '<option value="">Select Course to Edit</option>' + options;
         
         // Add event listener to populate form when course is selected
-        editSelect.addEventListener('change', function() {
+        newEditSelect.addEventListener('change', function() {
             const courseId = parseInt(this.value);
             if (courseId) {
                 const course = courses.find(c => c.id === courseId);

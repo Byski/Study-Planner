@@ -273,6 +273,28 @@ function goBack() {
     window.location.href = 'study-dashboard.html';
 }
 
+function goToCourses() {
+    window.location.href = 'study-dashboard.html';
+}
+
+function goToCalendar() {
+    // Placeholder for calendar page
+    alert('Calendar functionality will be implemented here');
+}
+
+function goToAnalytics() {
+    // Placeholder for analytics page
+    alert('Analytics functionality will be implemented here');
+}
+
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        sessionStorage.clear();
+        localStorage.removeItem('arqon_remember_me');
+        window.location.href = 'index.html';
+    }
+}
+
 function addAssignment() {
     // Placeholder for add assignment functionality
     alert('Add Assignment functionality will be implemented here');

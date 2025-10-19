@@ -91,39 +91,165 @@ body {
     border-radius: 15px;
     margin-bottom: 2rem;
     border: 1px solid rgba(0, 150, 255, 0.3);
+    animation: slideInDown 1s ease-out;
+    position: relative;
 }
 
-.header-left, .header-center, .header-right {
-    flex: 1;
+.header-left {
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .header-center {
+    display: flex;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    flex: 2;
 }
 
 .header-right {
+    display: flex;
     justify-content: flex-end;
+    flex: 1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .assignments-title {
     font-family: 'Courier New', monospace;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    letter-spacing: 0.1em;
     background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 3s ease-in-out infinite;
-    margin-bottom: 0.5rem;
+    animation: 
+        gradientShift 3s ease-in-out infinite,
+        glitch 2s ease-in-out infinite;
+    text-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.8),
+        0 0 40px rgba(255, 0, 255, 0.6);
+    filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.5));
+    margin: 0;
+    position: relative;
 }
 
-.assignments-subtitle {
-    color: #ccc;
+.welcome-text {
+    color: #00ffff;
     font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Assignments Tabs */
+.assignments-tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+    animation: slideInUp 1s ease-out 0.5s both;
+}
+
+.tab-btn {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 100px;
+    box-shadow: 
+        0 0 15px rgba(0, 150, 255, 0.3),
+        inset 0 0 15px rgba(0, 150, 255, 0.1);
+}
+
+.tab-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(0, 150, 255, 0.5),
+        0 0 30px rgba(0, 150, 255, 0.4),
+        inset 0 0 25px rgba(0, 150, 255, 0.15);
+    border-color: #0099ff;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #0099ff, #0066cc, #004499);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 
+        0 0 30px rgba(0, 150, 255, 0.7),
+        0 0 50px rgba(0, 100, 200, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.tab-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.tab-text {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.05em;
+    animation: textGlow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+/* Logout Container */
+.logout-container {
+    position: relative;
+    z-index: 10;
+    animation: slideInRight 1s ease-out 1s both;
+}
+
+.logout-btn {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -519,6 +645,30 @@ body {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+    100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Responsive Design */

@@ -18,22 +18,46 @@
         <!-- Header -->
         <header class="assignments-header">
             <div class="header-left">
-                <button class="back-btn" onclick="goBack()">
-                    <span class="btn-text">← BACK</span>
-                    <div class="btn-glow"></div>
-                </button>
+                <nav class="assignments-tabs">
+                    <button class="tab-btn active" data-tab="assignments">
+                        <span class="tab-icon">📝</span>
+                        <span class="tab-text">Assignments</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="courses" onclick="goToCourses()">
+                        <span class="tab-icon">📚</span>
+                        <span class="tab-text">Courses</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="calendar" onclick="goToCalendar()">
+                        <span class="tab-icon">📅</span>
+                        <span class="tab-text">Calendar</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="analytics" onclick="goToAnalytics()">
+                        <span class="tab-icon">📊</span>
+                        <span class="tab-text">Analytics</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                </nav>
             </div>
             
             <div class="header-center">
-                <h1 class="assignments-title">ARQON Assignments</h1>
-                <p class="assignments-subtitle">Manage your academic tasks</p>
+                <div class="header-content">
+                    <h1 class="assignments-title">ARQON - Assignments</h1>
+                    <div class="user-info">
+                        <p class="welcome-text">Welcome back, <span id="username">Byski</span>!</p>
+                    </div>
+                </div>
             </div>
             
             <div class="header-right">
-                <button class="add-assignment-btn" onclick="addAssignment()">
-                    <span class="btn-text">+ ADD</span>
-                    <div class="btn-glow"></div>
-                </button>
+                <div class="logout-container">
+                    <button class="logout-btn" onclick="logout()">
+                        <span class="btn-text">LOGOUT</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
             </div>
         </header>
         

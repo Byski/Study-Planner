@@ -106,9 +106,25 @@ function logout() {
     }, 500);
 }
 
+// Tab switching functionality
+function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+        });
+    });
+}
+
 // Initialize dashboard when page loads
 document.addEventListener('DOMContentLoaded', () => {
     new StudyDashboard();
+    initTabs();
     
     // Add CSS animations
     const style = document.createElement('style');

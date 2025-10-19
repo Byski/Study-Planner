@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON Assignments</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Reusing main styles for stars -->
+    <link rel="stylesheet" href="assignments.css">
+</head>
+<body>
+    <div class="stars-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+    </div>
+    
+    <div class="assignments-container">
+        <!-- Header -->
+        <header class="assignments-header">
+            <div class="header-left">
+                <button class="back-btn" onclick="goBack()">
+                    <span class="btn-text">← BACK</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+            
+            <div class="header-center">
+                <h1 class="assignments-title">ARQON Assignments</h1>
+                <p class="assignments-subtitle">Manage your academic tasks</p>
+            </div>
+            
+            <div class="header-right">
+                <button class="add-assignment-btn" onclick="addAssignment()">
+                    <span class="btn-text">+ ADD</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label for="courseFilter">Course:</label>
+                <select id="courseFilter" class="filter-select">
+                    <option value="">All Courses</option>
+                    <option value="CS101">CS101 - Introduction to Computer Science</option>
+                    <option value="CS201">CS201 - Data Structures</option>
+                    <option value="CS301">CS301 - Software Engineering</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="overdue">Overdue</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="dueRangeFilter">Due Range:</label>
+                <select id="dueRangeFilter" class="filter-select">
+                    <option value="">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="overdue">Overdue</option>
+                </select>
+            </div>
+            
+            <div class="filter-actions">
+                <button class="clear-filters-btn" onclick="clearFilters()">
+                    <span class="btn-text">Clear</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Spreadsheet Table -->
+        <div class="table-container">
+            <table class="assignments-table" id="assignmentsTable">
+                <thead class="sticky-header">
+                    <tr>
+                        <th class="sortable" data-column="title">
+                            <span>Assignment</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th class="sortable" data-column="course">
+                            <span>Course</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th class="sortable" data-column="status">
+                            <span>Status</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th class="sortable" data-column="dueDate">
+                            <span>Due Date</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th class="sortable" data-column="priority">
+                            <span>Priority</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th class="sortable" data-column="hours">
+                            <span>Hours</span>
+                            <span class="sort-indicator">↕</span>
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="assignmentsTableBody">
+                    <!-- Sample data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Summary Bar -->
+        <div class="summary-bar">
+            <div class="summary-item">
+                <span class="summary-label">Total Assignments:</span>
+                <span class="summary-value" id="totalAssignments">0</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Total Hours:</span>
+                <span class="summary-value" id="totalHours">0</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Pending:</span>
+                <span class="summary-value" id="pendingCount">0</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Overdue:</span>
+                <span class="summary-value" id="overdueCount">0</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- System Status - Bottom Center -->
+    <div class="system-status">
+        <span class="status-indicator">●</span>
+        <span class="status-text">SYSTEM ONLINE</span>
+    </div>
+    
+    <script src="assignments.js"></script>
+</body>
+</html>

@@ -95,11 +95,19 @@ function initTabs() {
     
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
+            const tabName = button.getAttribute('data-tab');
+            
             // Remove active class from all buttons
             tabButtons.forEach(btn => btn.classList.remove('active'));
             
             // Add active class to clicked button
             button.classList.add('active');
+            
+            // Handle navigation to different pages
+            if (tabName === 'assignments') {
+                window.location.href = 'assignments.html';
+            }
+            // Add other tab navigation as needed
         });
     });
 }

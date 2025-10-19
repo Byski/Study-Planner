@@ -295,29 +295,29 @@ function updateCourseSelects() {
     
     if (editSelect) {
         editSelect.innerHTML = '<option value="">Select Course to Edit</option>' + options;
+        
         // Add event listener to populate form when course is selected
-        editSelect.addEventListener('change', populateEditForm);
+        editSelect.addEventListener('change', function() {
+            const courseId = parseInt(this.value);
+            if (courseId) {
+                const course = courses.find(c => c.id === courseId);
+                if (course) {
+                    document.getElementById('editCourseName').value = course.name || '';
+                    document.getElementById('editCourseCode').value = course.code || '';
+                    document.getElementById('editInstructor').value = course.instructor || '';
+                    document.getElementById('editDescription').value = course.description || '';
+                    document.getElementById('editStartDate').value = course.startDate || '';
+                    document.getElementById('editEndDate').value = course.endDate || '';
+                }
+            } else {
+                // Clear form when no course is selected
+                document.getElementById('editCourseForm').reset();
+            }
+        });
     }
     
     if (deleteSelect) {
         deleteSelect.innerHTML = '<option value="">Select Course to Delete</option>' + options;
-    }
-}
-
-function populateEditForm() {
-    const courseId = parseInt(document.getElementById('editCourseSelect').value);
-    if (!courseId) return;
-    
-    const courses = JSON.parse(localStorage.getItem('arqon_courses') || '[]');
-    const course = courses.find(c => c.id === courseId);
-    
-    if (course) {
-        document.getElementById('editCourseName').value = course.name || '';
-        document.getElementById('editCourseCode').value = course.code || '';
-        document.getElementById('editInstructor').value = course.instructor || '';
-        document.getElementById('editDescription').value = course.description || '';
-        document.getElementById('editStartDate').value = course.startDate || '';
-        document.getElementById('editEndDate').value = course.endDate || '';
     }
 }
 

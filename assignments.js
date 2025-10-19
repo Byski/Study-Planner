@@ -11,70 +11,17 @@ class AssignmentsManager {
     
     init() {
         this.loadSampleData();
+        this.loadCoursesFromStorage();
         this.setupEventListeners();
         this.renderTable();
         this.updateSummary();
+        this.populateCourseDropdowns();
     }
     
     loadSampleData() {
-        this.assignments = [
-            {
-                id: 1,
-                title: "Data Structures Project",
-                course: "CS201",
-                courseName: "Data Structures and Algorithms",
-                status: "in-progress",
-                dueDate: "2024-10-25",
-                priority: "high",
-                hours: 8,
-                description: "Implement binary search tree with operations"
-            },
-            {
-                id: 2,
-                title: "Web Development Assignment",
-                course: "CS301",
-                courseName: "Software Engineering",
-                status: "pending",
-                dueDate: "2024-10-28",
-                priority: "medium",
-                hours: 6,
-                description: "Create responsive website using HTML/CSS/JS"
-            },
-            {
-                id: 3,
-                title: "Database Design Report",
-                course: "CS101",
-                courseName: "Introduction to Computer Science",
-                status: "completed",
-                dueDate: "2024-10-20",
-                priority: "low",
-                hours: 4,
-                description: "Design ER diagram for library management system"
-            },
-            {
-                id: 4,
-                title: "Algorithm Analysis",
-                course: "CS201",
-                courseName: "Data Structures and Algorithms",
-                status: "overdue",
-                dueDate: "2024-10-15",
-                priority: "high",
-                hours: 5,
-                description: "Analyze time complexity of sorting algorithms"
-            },
-            {
-                id: 5,
-                title: "Mobile App Prototype",
-                course: "CS301",
-                courseName: "Software Engineering",
-                status: "pending",
-                dueDate: "2024-11-02",
-                priority: "medium",
-                hours: 12,
-                description: "Create wireframes and user flow for mobile app"
-            }
-        ];
-        
+        // Load from localStorage only
+        const savedAssignments = JSON.parse(localStorage.getItem('arqon_assignments') || '[]');
+        this.assignments = savedAssignments;
         this.filteredAssignments = [...this.assignments];
     }
     
@@ -91,6 +38,9 @@ class AssignmentsManager {
                 this.sortTable(column);
             });
         });
+        
+        // Add assignment form
+        document.getElementById('addAssignmentForm').addEventListener('submit', (e) => this.handleAddAssignment(e));
     }
     
     applyFilters() {
@@ -266,6 +216,125 @@ class AssignmentsManager {
         this.renderTable();
         this.updateSummary();
     }
+    
+    loadCoursesFromStorage() {
+        // Load courses from localStorage (from dashboard)
+        const courses = JSON.parse(localStorage.getItem('arqon_courses') || '[]');
+        this.courses = courses;
+    }
+    
+    populateCourseDropdowns() {
+        const courseFilter = document.getElementById('courseFilter');
+        const assignmentCourse = document.getElementById('assignmentCourse');
+        
+        // Clear existing options (except first)
+        courseFilter.innerHTML = '<option value="">All Courses</option>';
+        assignmentCourse.innerHTML = '<option value="">Select Course</option>';
+        
+        // Add courses to both dropdowns
+        this.courses.forEach(course => {
+            const option1 = document.createElement('option');
+            option1.value = course.code;
+            option1.textContent = `${course.code} - ${course.name}`;
+            courseFilter.appendChild(option1);
+            
+            const option2 = document.createElement('option');
+            option2.value = course.code;
+            option2.textContent = `${course.code} - ${course.name}`;
+            assignmentCourse.appendChild(option2);
+        });
+    }
+    
+    handleAddAssignment(e) {
+        e.preventDefault();
+        
+        const title = document.getElementById('assignmentTitle').value.trim();
+        const courseCode = document.getElementById('assignmentCourse').value;
+        const description = document.getElementById('assignmentDescription').value.trim();
+        const dueDate = document.getElementById('assignmentDueDate').value;
+        const priority = document.getElementById('assignmentPriority').value;
+        const hours = parseInt(document.getElementById('assignmentHours').value);
+        
+        if (!title || !courseCode || !dueDate) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        // Find course details
+        const course = this.courses.find(c => c.code === courseCode);
+        if (!course) {
+            alert('Selected course not found');
+            return;
+        }
+        
+        // Create new assignment
+        const newAssignment = {
+            id: Date.now(),
+            title: title,
+            course: courseCode,
+            courseName: course.name,
+            status: 'pending',
+            dueDate: dueDate,
+            priority: priority,
+            hours: hours,
+            description: description
+        };
+        
+        // Add to assignments array
+        this.assignments.push(newAssignment);
+        this.filteredAssignments = [...this.assignments];
+        
+        // Save to localStorage
+        localStorage.setItem('arqon_assignments', JSON.stringify(this.assignments));
+        
+        // Update display
+        this.renderTable();
+        this.updateSummary();
+        
+        // Close modal and reset form
+        this.closeAddAssignmentModal();
+        
+        // Show success message
+        this.showNotification('Assignment added successfully!', 'success');
+    }
+    
+    closeAddAssignmentModal() {
+        document.getElementById('addAssignmentModal').style.display = 'none';
+        document.getElementById('addAssignmentForm').reset();
+    }
+    
+    showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            background: ${type === 'success' ? 'linear-gradient(45deg, #00ff00, #00cc00)' : 
+                        type === 'error' ? 'linear-gradient(45deg, #ff0000, #cc0000)' : 
+                        'linear-gradient(45deg, #0099ff, #0066cc)'};
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease-out';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
 }
 
 // Global functions
@@ -296,8 +365,11 @@ function logout() {
 }
 
 function addAssignment() {
-    // Placeholder for add assignment functionality
-    alert('Add Assignment functionality will be implemented here');
+    document.getElementById('addAssignmentModal').style.display = 'flex';
+}
+
+function closeAddAssignmentModal() {
+    assignmentsManager.closeAddAssignmentModal();
 }
 
 function editAssignment(id) {

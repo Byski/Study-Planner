@@ -108,10 +108,10 @@ body {
 }
 
 .dashboard-title {
-    font-size: 4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 3.5rem;
     font-weight: bold;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
     background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
     background-size: 400% 400%;
     -webkit-background-clip: text;
@@ -119,12 +119,50 @@ body {
     background-clip: text;
     animation: 
         gradientShift 3s ease-in-out infinite,
-        pulse 2s ease-in-out infinite;
+        glitch 2s ease-in-out infinite;
     text-shadow: 
         0 0 20px rgba(0, 255, 255, 0.8),
         0 0 40px rgba(255, 0, 255, 0.6);
     filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.5));
     margin-bottom: 1rem;
+    position: relative;
+}
+
+.dashboard-title::before {
+    content: '> ';
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.dashboard-title::after {
+    content: ' <';
+    color: #ff00ff;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+}
+
+@keyframes glitch {
+    0%, 100% { 
+        transform: translateX(0);
+        filter: hue-rotate(0deg);
+    }
+    10% { 
+        transform: translateX(-2px);
+        filter: hue-rotate(90deg);
+    }
+    20% { 
+        transform: translateX(2px);
+        filter: hue-rotate(180deg);
+    }
+    30% { 
+        transform: translateX(-1px);
+        filter: hue-rotate(270deg);
+    }
+    40% { 
+        transform: translateX(1px);
+        filter: hue-rotate(360deg);
+    }
 }
 
 @keyframes gradientShift {
@@ -166,6 +204,145 @@ body {
     font-weight: bold;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
+
+/* System Status */
+.system-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    animation: blink 1.5s ease-in-out infinite;
+}
+
+.status-indicator {
+    color: #00ff00;
+    font-size: 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-text {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+/* Dashboard Tabs */
+.dashboard-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    animation: slideInUp 1s ease-out 0.5s both;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 200px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.2),
+        inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.tab-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.3),
+        inset 0 0 30px rgba(0, 255, 255, 0.1);
+    border-color: #00ffff;
+}
+
+.tab-btn.active {
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.6),
+        0 0 50px rgba(255, 0, 255, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.6),
+            0 0 50px rgba(255, 0, 255, 0.4),
+            inset 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+    50% { 
+        box-shadow: 
+            0 0 40px rgba(0, 255, 255, 0.8),
+            0 0 60px rgba(255, 0, 255, 0.6),
+            inset 0 0 40px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.tab-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.tab-text {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.tab-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.tab-btn:hover .tab-glow {
+    left: 100%;
+}
+
 
 /* Logout Container */
 .logout-container {
@@ -254,6 +431,35 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .dashboard-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .tab-btn {
+        min-width: 250px;
+        padding: 1rem 1.5rem;
+    }
+    
+    .tab-icon {
+        font-size: 1.5rem;
+    }
+    
+    .tab-text {
+        font-size: 0.8rem;
+    }
+    
+    .panel-title {
+        font-size: 2rem;
+    }
+    
+    .panel-description {
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 480px) {
     .dashboard-title {
         font-size: 2rem;
@@ -261,6 +467,35 @@ body {
     
     .welcome-text {
         font-size: 1rem;
+    }
+    
+    .dashboard-tabs {
+        margin: 1rem 0;
+    }
+    
+    .tab-btn {
+        min-width: 200px;
+        padding: 0.8rem 1rem;
+    }
+    
+    .tab-icon {
+        font-size: 1.2rem;
+    }
+    
+    .tab-text {
+        font-size: 0.7rem;
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+    
+    .panel-title {
+        font-size: 1.5rem;
+    }
+    
+    .panel-description {
+        font-size: 0.9rem;
     }
     
     .logout-container {

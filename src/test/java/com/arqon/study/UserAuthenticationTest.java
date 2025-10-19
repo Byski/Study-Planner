@@ -131,7 +131,7 @@ public class UserAuthenticationTest {
         
         // Then
         assertFalse(sessionManager.isValidSession(sessionId));
-        assertNull(sessionManager.getSession(sessionId));
+        assertTrue(sessionManager.getSession(sessionId).isEmpty());
     }
     
     @Test

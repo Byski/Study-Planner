@@ -19,14 +19,14 @@
         <header class="assignments-header">
             <div class="header-left">
                 <nav class="assignments-tabs">
-                    <button class="tab-btn active" data-tab="assignments">
-                        <span class="tab-icon">📝</span>
-                        <span class="tab-text">Assignments</span>
-                        <div class="tab-glow"></div>
-                    </button>
                     <button class="tab-btn" data-tab="courses" onclick="goToCourses()">
                         <span class="tab-icon">📚</span>
                         <span class="tab-text">Courses</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn active" data-tab="assignments">
+                        <span class="tab-icon">📝</span>
+                        <span class="tab-text">Assignments</span>
                         <div class="tab-glow"></div>
                     </button>
                     <button class="tab-btn" data-tab="calendar" onclick="goToCalendar()">
@@ -44,7 +44,7 @@
             
             <div class="header-center">
                 <div class="header-content">
-                    <h1 class="assignments-title">ARQON - Assignments</h1>
+                    <h1 class="assignments-title"><span class="title-symbols">></span> ARQON - Assignments <span class="title-symbols"><</span></h1>
                     <div class="user-info">
                         <p class="welcome-text">Welcome back, <span id="username">Byski</span>!</p>
                     </div>
@@ -61,15 +61,58 @@
             </div>
         </header>
         
+        <!-- Add Assignment Modal -->
+        <div class="modal-overlay" id="addAssignmentModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Assignment</h3>
+                    <button class="close-btn" onclick="closeAddAssignmentModal()">&times;</button>
+                </div>
+                <form id="addAssignmentForm" class="assignment-form">
+                    <div class="form-group">
+                        <label for="assignmentTitle">Assignment Title:</label>
+                        <input type="text" id="assignmentTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentCourse">Course:</label>
+                        <select id="assignmentCourse" required>
+                            <option value="">Select Course</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentDescription">Description:</label>
+                        <textarea id="assignmentDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentDueDate">Due Date:</label>
+                        <input type="date" id="assignmentDueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentPriority">Priority:</label>
+                        <select id="assignmentPriority" required>
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentHours">Estimated Hours:</label>
+                        <input type="number" id="assignmentHours" min="1" max="100" value="5" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" onclick="closeAddAssignmentModal()">Cancel</button>
+                        <button type="submit" class="submit-btn">Add Assignment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- Filter Bar -->
         <div class="filter-bar">
             <div class="filter-group">
                 <label for="courseFilter">Course:</label>
                 <select id="courseFilter" class="filter-select">
                     <option value="">All Courses</option>
-                    <option value="CS101">CS101 - Introduction to Computer Science</option>
-                    <option value="CS201">CS201 - Data Structures</option>
-                    <option value="CS301">CS301 - Software Engineering</option>
                 </select>
             </div>
             
@@ -96,6 +139,10 @@
             </div>
             
             <div class="filter-actions">
+                <button class="add-assignment-btn" onclick="addAssignment()">
+                    <span class="btn-text">+ ADD</span>
+                    <div class="btn-glow"></div>
+                </button>
                 <button class="clear-filters-btn" onclick="clearFilters()">
                     <span class="btn-text">Clear</span>
                 </button>

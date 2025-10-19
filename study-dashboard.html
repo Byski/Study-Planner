@@ -62,6 +62,131 @@
                 </div>
             </div>
         </header>
+        
+        <!-- Course Management Section -->
+        <div class="course-management" id="courseManagement">
+            <div class="management-header">
+                <h2 class="management-title">Course Management</h2>
+                <div class="management-tabs">
+                    <button class="mgmt-tab-btn active" data-tab="list">
+                        <span class="tab-icon">📋</span>
+                        <span class="tab-text">List Courses</span>
+                    </button>
+                    <button class="mgmt-tab-btn" data-tab="create">
+                        <span class="tab-icon">➕</span>
+                        <span class="tab-text">Create Course</span>
+                    </button>
+                    <button class="mgmt-tab-btn" data-tab="edit">
+                        <span class="tab-icon">✏️</span>
+                        <span class="tab-text">Edit Course</span>
+                    </button>
+                    <button class="mgmt-tab-btn" data-tab="delete">
+                        <span class="tab-icon">🗑️</span>
+                        <span class="tab-text">Delete Course</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="management-content">
+                <!-- List Courses Tab -->
+                <div class="tab-panel active" id="listPanel">
+                    <div class="course-list">
+                        <h3>Your Courses</h3>
+                        <div class="course-grid" id="courseGrid">
+                            <!-- Courses will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Create Course Tab -->
+                <div class="tab-panel" id="createPanel">
+                    <div class="course-form">
+                        <h3>Create New Course</h3>
+                        <form id="createCourseForm">
+                            <div class="form-group">
+                                <input type="text" id="courseName" placeholder="Course Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="courseCode" placeholder="Course Code" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="instructor" placeholder="Instructor Name">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="description" placeholder="Course Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="endDate" required>
+                            </div>
+                            <button type="submit" class="action-btn create-btn">
+                                <span class="btn-text">Create Course</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Edit Course Tab -->
+                <div class="tab-panel" id="editPanel">
+                    <div class="course-form">
+                        <h3>Edit Course</h3>
+                        <form id="editCourseForm">
+                            <div class="form-group">
+                                <select id="editCourseSelect" required>
+                                    <option value="">Select Course to Edit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="editCourseName" placeholder="Course Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="editCourseCode" placeholder="Course Code" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="editInstructor" placeholder="Instructor Name">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="editDescription" placeholder="Course Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="editStartDate" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="editEndDate" required>
+                            </div>
+                            <button type="submit" class="action-btn edit-btn">
+                                <span class="btn-text">Update Course</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Delete Course Tab -->
+                <div class="tab-panel" id="deletePanel">
+                    <div class="course-form">
+                        <h3>Delete Course</h3>
+                        <form id="deleteCourseForm">
+                            <div class="form-group">
+                                <select id="deleteCourseSelect" required>
+                                    <option value="">Select Course to Delete</option>
+                                </select>
+                            </div>
+                            <div class="delete-warning">
+                                <p>⚠️ This action cannot be undone!</p>
+                            </div>
+                            <button type="submit" class="action-btn delete-btn">
+                                <span class="btn-text">Delete Course</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="study-dashboard.js"></script>

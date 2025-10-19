@@ -295,14 +295,10 @@ function updateCourseSelects() {
     ).join('');
     
     if (editSelect) {
-        // Remove existing event listeners by cloning the element
-        const newEditSelect = editSelect.cloneNode(true);
-        editSelect.parentNode.replaceChild(newEditSelect, editSelect);
-        
-        newEditSelect.innerHTML = '<option value="">Select Course to Edit</option>' + options;
+        editSelect.innerHTML = '<option value="">Select Course to Edit</option>' + options;
         
         // Add event listener to populate form when course is selected
-        newEditSelect.addEventListener('change', function() {
+        editSelect.addEventListener('change', function() {
             const courseId = parseInt(this.value);
             if (courseId) {
                 const course = courses.find(c => c.id === courseId);
@@ -365,6 +361,38 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     // Initialize course management by default
     initCourseManagement();
+    
+    // Add sample courses if none exist (for testing)
+    const existingCourses = JSON.parse(localStorage.getItem('arqon_courses') || '[]');
+    if (existingCourses.length === 0) {
+        const sampleCourses = [
+            {
+                id: Date.now(),
+                name: "Introduction to Computer Science",
+                code: "CS101",
+                instructor: "Dr. Smith",
+                description: "Basic concepts of computer science and programming",
+                startDate: "2024-01-15",
+                endDate: "2024-05-15",
+                createdAt: new Date().toISOString()
+            },
+            {
+                id: Date.now() + 1,
+                name: "Data Structures and Algorithms",
+                code: "CS201",
+                instructor: "Prof. Johnson",
+                description: "Advanced data structures and algorithmic thinking",
+                startDate: "2024-02-01",
+                endDate: "2024-06-01",
+                createdAt: new Date().toISOString()
+            }
+        ];
+        localStorage.setItem('arqon_courses', JSON.stringify(sampleCourses));
+        console.log('Sample courses created:', sampleCourses);
+        // Reload courses after creating samples
+        loadCourses();
+        updateCourseSelects();
+    }
     
     // Add CSS animations
     const style = document.createElement('style');

@@ -165,6 +165,12 @@ class AssignmentsManager {
                 <td><span class="priority-chip priority-${assignment.priority}">${assignment.priority}</span></td>
                 <td>${assignment.hours}</td>
                 <td>
+                    <select class="status-select" onchange="updateAssignmentStatus(${assignment.id}, this.value)">
+                        <option value="pending" ${assignment.status === 'pending' ? 'selected' : ''}>Pending</option>
+                        <option value="in-progress" ${assignment.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                        <option value="completed" ${assignment.status === 'completed' ? 'selected' : ''}>Completed</option>
+                        <option value="overdue" ${assignment.status === 'overdue' ? 'selected' : ''}>Overdue</option>
+                    </select>
                     <button class="action-btn edit-btn" onclick="editAssignment(${assignment.id})">Edit</button>
                     <button class="action-btn delete-btn" onclick="deleteAssignment(${assignment.id})">Delete</button>
                 </td>
@@ -303,6 +309,31 @@ class AssignmentsManager {
         document.getElementById('addAssignmentForm').reset();
     }
     
+    updateAssignmentStatus(assignmentId, newStatus) {
+        // Find the assignment in the array
+        const assignment = this.assignments.find(a => a.id === assignmentId);
+        if (!assignment) {
+            this.showNotification('Assignment not found!', 'error');
+            return;
+        }
+        
+        // Update the status
+        assignment.status = newStatus;
+        
+        // Save to localStorage
+        localStorage.setItem('arqon_assignments', JSON.stringify(this.assignments));
+        
+        // Update filtered assignments
+        this.filteredAssignments = [...this.assignments];
+        
+        // Re-render table and update summary
+        this.renderTable();
+        this.updateSummary();
+        
+        // Show success notification
+        this.showNotification(`Status updated to ${newStatus.replace('-', ' ')}!`, 'success');
+    }
+
     showNotification(message, type = 'info') {
         // Create notification element
         const notification = document.createElement('div');
@@ -381,6 +412,12 @@ function deleteAssignment(id) {
     if (confirm('Are you sure you want to delete this assignment?')) {
         assignmentsManager.assignments = assignmentsManager.assignments.filter(a => a.id !== id);
         assignmentsManager.applyFilters();
+    }
+}
+
+function updateAssignmentStatus(assignmentId, newStatus) {
+    if (window.assignmentsManager) {
+        window.assignmentsManager.updateAssignmentStatus(assignmentId, newStatus);
     }
 }
 

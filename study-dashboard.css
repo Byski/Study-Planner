@@ -76,12 +76,10 @@ body {
 .dashboard-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     position: relative;
     z-index: 1;
-    padding: 2rem;
+    padding: 0;
     animation: fadeIn 1s ease-out;
 }
 
@@ -92,8 +90,47 @@ body {
 
 /* Dashboard Header */
 .dashboard-header {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.9));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 150, 255, 0.3);
     animation: slideInDown 1s ease-out;
+    position: relative;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+    flex: 2;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
 }
 
 @keyframes slideInDown {
@@ -109,7 +146,7 @@ body {
 
 .dashboard-title {
     font-family: 'Courier New', monospace;
-    font-size: 3.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     letter-spacing: 0.1em;
     background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
@@ -124,7 +161,7 @@ body {
         0 0 20px rgba(0, 255, 255, 0.8),
         0 0 40px rgba(255, 0, 255, 0.6);
     filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.5));
-    margin-bottom: 1rem;
+    margin: 0;
     position: relative;
 }
 
@@ -239,9 +276,8 @@ body {
 .dashboard-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
+    gap: 0.3rem;
+    flex-wrap: nowrap;
     animation: slideInUp 1s ease-out 0.5s both;
 }
 
@@ -259,62 +295,62 @@ body {
 .tab-btn {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
     border: 2px solid transparent;
-    border-radius: 15px;
+    border-radius: 8px;
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
-    min-width: 200px;
+    min-width: 100px;
     box-shadow: 
-        0 0 20px rgba(0, 255, 255, 0.2),
-        inset 0 0 20px rgba(0, 255, 255, 0.05);
+        0 0 15px rgba(0, 150, 255, 0.3),
+        inset 0 0 15px rgba(0, 150, 255, 0.1);
 }
 
 .tab-btn:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 
-        0 10px 30px rgba(0, 255, 255, 0.4),
-        0 0 40px rgba(0, 255, 255, 0.3),
-        inset 0 0 30px rgba(0, 255, 255, 0.1);
-    border-color: #00ffff;
+        0 10px 35px rgba(0, 150, 255, 0.5),
+        0 0 45px rgba(0, 150, 255, 0.4),
+        inset 0 0 35px rgba(0, 150, 255, 0.15);
+    border-color: #0099ff;
 }
 
 .tab-btn.active {
-    background: linear-gradient(45deg, #00ffff, #ff00ff);
-    color: #000;
+    background: linear-gradient(135deg, #0099ff, #0066cc, #004499);
+    color: #fff;
     font-weight: bold;
     box-shadow: 
-        0 0 30px rgba(0, 255, 255, 0.6),
-        0 0 50px rgba(255, 0, 255, 0.4),
-        inset 0 0 30px rgba(255, 255, 255, 0.2);
+        0 0 35px rgba(0, 150, 255, 0.7),
+        0 0 55px rgba(0, 100, 200, 0.5),
+        inset 0 0 35px rgba(255, 255, 255, 0.2);
     animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
     0%, 100% { 
         box-shadow: 
-            0 0 30px rgba(0, 255, 255, 0.6),
-            0 0 50px rgba(255, 0, 255, 0.4),
-            inset 0 0 30px rgba(255, 255, 255, 0.2);
+            0 0 35px rgba(0, 150, 255, 0.7),
+            0 0 55px rgba(0, 100, 200, 0.5),
+            inset 0 0 35px rgba(255, 255, 255, 0.2);
     }
     50% { 
         box-shadow: 
-            0 0 40px rgba(0, 255, 255, 0.8),
-            0 0 60px rgba(255, 0, 255, 0.6),
-            inset 0 0 40px rgba(255, 255, 255, 0.3);
+            0 0 45px rgba(0, 150, 255, 0.9),
+            0 0 65px rgba(0, 100, 200, 0.7),
+            inset 0 0 45px rgba(255, 255, 255, 0.3);
     }
 }
 
 .tab-icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    display: block;
-    animation: float 3s ease-in-out infinite;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+    /* Removed floating animation - icons are now still */
 }
 
 @keyframes float {
@@ -323,10 +359,24 @@ body {
 }
 
 .tab-text {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     font-weight: bold;
     text-align: center;
     letter-spacing: 0.05em;
+    animation: textGlow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.6);
+        transform: scale(1.02);
+    }
 }
 
 .tab-glow {
@@ -346,9 +396,7 @@ body {
 
 /* Logout Container */
 .logout-container {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
+    position: relative;
     z-index: 10;
     animation: slideInRight 1s ease-out 1s both;
 }

@@ -15,44 +15,53 @@
     
     <div class="dashboard-container">
         <header class="dashboard-header">
-            <h1 class="dashboard-title">ARQON - Study Dashboard</h1>
-            <p class="welcome-text">Welcome back, <span id="username">Byski</span>!</p>
-            <div class="system-status">
-                <span class="status-indicator">●</span>
-                <span class="status-text">SYSTEM ONLINE</span>
+            <div class="header-left">
+                <div class="header-content">
+                    <h1 class="dashboard-title">ARQON - Study Dashboard</h1>
+                    <div class="user-info">
+                        <p class="welcome-text">Welcome back, <span id="username">Byski</span>!</p>
+                        <div class="system-status">
+                            <span class="status-indicator">●</span>
+                            <span class="status-text">SYSTEM ONLINE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <nav class="dashboard-tabs">
+                    <button class="tab-btn active" data-tab="courses">
+                        <span class="tab-icon">📚</span>
+                        <span class="tab-text">Courses</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="assignments">
+                        <span class="tab-icon">📝</span>
+                        <span class="tab-text">Assignments</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="calendar">
+                        <span class="tab-icon">📅</span>
+                        <span class="tab-text">Calendar</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                    <button class="tab-btn" data-tab="analytics">
+                        <span class="tab-icon">📊</span>
+                        <span class="tab-text">Analytics</span>
+                        <div class="tab-glow"></div>
+                    </button>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="logout-container">
+                    <button class="logout-btn" onclick="logout()">
+                        <span class="btn-text">LOGOUT</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
             </div>
         </header>
-        
-        <nav class="dashboard-tabs">
-            <button class="tab-btn active" data-tab="courses">
-                <span class="tab-icon">📚</span>
-                <span class="tab-text">Courses Management</span>
-                <div class="tab-glow"></div>
-            </button>
-            <button class="tab-btn" data-tab="assignments">
-                <span class="tab-icon">📝</span>
-                <span class="tab-text">Assignments Management</span>
-                <div class="tab-glow"></div>
-            </button>
-            <button class="tab-btn" data-tab="calendar">
-                <span class="tab-icon">📅</span>
-                <span class="tab-text">Calendar & Scheduling</span>
-                <div class="tab-glow"></div>
-            </button>
-            <button class="tab-btn" data-tab="analytics">
-                <span class="tab-icon">📊</span>
-                <span class="tab-text">Analytics & Export</span>
-                <div class="tab-glow"></div>
-            </button>
-        </nav>
-        
-        
-        <div class="logout-container">
-            <button class="logout-btn" onclick="logout()">
-                <span class="btn-text">LOGOUT</span>
-                <div class="btn-glow"></div>
-            </button>
-        </div>
     </div>
     
     <script src="study-dashboard.js"></script>
